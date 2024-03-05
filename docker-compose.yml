@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    user: 'root'
+    volumes:
+      - .:/rails
+    # ports:
+    #   - 3000:3000
