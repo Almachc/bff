@@ -2,7 +2,19 @@ services:
   app:
     build: .
     user: 'root'
+    command: bin/rails s -b 0.0.0.0 -p 3033
     volumes:
       - .:/rails
     # ports:
-    #   - 3000:3000
+    #   - 3033:3033
+    environment:
+      RAILS_ENV: development
+      POLICYZINHA_SERVICE: 'http://policyzinha-service:3000'
+#     networks:
+#       policyzinha-service_default:
+#         aliases:
+#           - bff
+
+# networks:
+#   policyzinha-service_default:
+#     external: true
