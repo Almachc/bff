@@ -1,14 +1,22 @@
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    # ports:
+    #   - '5672:5672'
+    #   - '15672:15672'
+
   app:
-    build: .
-    user: 'root'
-    command: bin/rails s -b 0.0.0.0 -p 3033
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     volumes:
       - .:/rails
+    command: /bin/bash -c "bin/setup && bin/rails s -b 0.0.0.0 -p 3033"
     # ports:
     #   - 3033:3033
+    depends_on:
+      - rabbitmq
     environment:
-      RAILS_ENV: development
       POLICYZINHA_SERVICE: 'http://policyzinha-service:3000'
 #     networks:
 #       policyzinha-service_default:
