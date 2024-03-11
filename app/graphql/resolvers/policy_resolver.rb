@@ -4,7 +4,7 @@ module Resolvers
     argument :id, ID, required: true
 
     def resolve(id:)
-      response = Faraday.new(ENV['POLICYZINHA_SERVICE']).get("/policies/#{id}")
+      response = Faraday.new(ENV['POLICYZINHA_HOST']).get("/policies/#{id}")
       JSON.parse(response.body)
     end
   end
