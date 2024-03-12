@@ -4,6 +4,8 @@ class Mutations::CreatePolicyMutation < Mutations::BaseMutation
   field :message, String, null: false
 
   def resolve(attributes:)
+    RequestedPolicyCreationEvent.new(attributes).publish!
+
     { message: 'OK' }
   end
 end

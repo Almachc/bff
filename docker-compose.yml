@@ -1,10 +1,4 @@
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    # ports:
-    #   - '5672:5672'
-    #   - '15672:15672'
-
   app:
     build:
       context: .
@@ -12,12 +6,11 @@ services:
     volumes:
       - .:/rails
     command: /bin/bash -c "bin/setup && bin/rails s -b 0.0.0.0 -p 3033"
-    # ports:
-    #   - 3033:3033
-    depends_on:
-      - rabbitmq
+    ports:
+      - 3033:3033
     environment:
-      POLICYZINHA_SERVICE: 'http://policyzinha-service:3000'
+      POLICYZINHA_HOST: 'http://policyzinha-service:3000'
+      RABBITMQ_HOST: amqp://guest:guest@rabbitmq:5672
 #     networks:
 #       policyzinha-service_default:
 #         aliases:
