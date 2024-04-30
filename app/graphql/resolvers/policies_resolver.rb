@@ -3,7 +3,9 @@ module Resolvers
     type [Types::PolicyType], null: false
 
     def resolve
-      response = Faraday.new(ENV['POLICYZINHA_HOST']).get("/policies")
+      headers = { 'Authorization' => "Bearer #{context[:token]}" }
+      response = Faraday.new(url: ENV['POLICYZINHA_HOST'], headers: headers).get('/policies')
+
       JSON.parse(response.body)
     end
   end

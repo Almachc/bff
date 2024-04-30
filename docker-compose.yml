@@ -12,6 +12,7 @@ services:
     environment:
       POLICYZINHA_HOST: 'http://policyzinha-service:3030'
       RABBITMQ_HOST: amqp://guest:guest@rabbitmq:5672
+      JWT_SECRET: 'bolinha'
 
 networks:
   default:

@@ -32,6 +32,7 @@ gem "bootsnap", require: false
 gem 'graphql', '~> 2.2', '>= 2.2.11'
 gem 'faraday', '~> 2.9'
 gem 'bunny', '~> 2.22'
+gem 'jwt'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

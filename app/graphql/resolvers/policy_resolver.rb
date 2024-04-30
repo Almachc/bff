@@ -4,7 +4,9 @@ module Resolvers
     argument :id, ID, required: true
 
     def resolve(id:)
-      response = Faraday.new(ENV['POLICYZINHA_HOST']).get("/policies/#{id}")
+      headers = { 'Authorization' => "Bearer #{context[:token]}" }
+      response = Faraday.new(url: ENV['POLICYZINHA_HOST'], headers: headers).get("/policies/#{id}")
+
       JSON.parse(response.body)
     end
   end
